@@ -1,0 +1,16 @@
+[{
+  "type": "add",
+  "id": "1",
+  "fields": {
+    "relative_url": "/video/introduction-to-compound-interest",
+    "keywords": "compound, interest",
+    "ka_url": "http://www.khanacademy.org/video/introduction-to-compound-interest",
+    "duration": 416,
+    "title": "Introduction to compound interest",
+    "description": "Introduction to compound interest",
+    "node_slug": "v/introduction-to-compound-interest",
+    "url": "http://www.youtube.com/watch?v=Rm6UdfRs3gw&feature=youtube_gdata_player",
+    "image_url": "https://img.youtube.com/vi/Rm6UdfRs3gw/hqdefault.jpg",
+    "youtube_id": "Rm6UdfRs3gw"
+  }
+}]

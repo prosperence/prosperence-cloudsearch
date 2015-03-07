@@ -1,0 +1,12 @@
+{
+  "name": "NodeCloudsearch",
+  "version": "0.1.0",
+  "description": "Helper script for interacting with the Amazon Cloudsearch api with node.js",
+  "private": true,
+  "dependencies": {
+    "node-uuid": "*",
+    "request": "*",
+    "aws-sdk": "*",
+    "q": "*"
+  }
+}
