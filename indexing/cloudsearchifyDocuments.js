@@ -3,7 +3,7 @@
 // 2) converts any value fields that are of type "object" to type string, since Cloudsearch cannot index json objects as field values.
 var uuid = require('node-uuid');
 
-exports.cloudsearchifyDocuments = function(khanDocument) {
+exports.cloudsearchifyDocuments = function(khanDocument, categories) {
   var csAllDocuments = [];
   var document = {};
 
@@ -19,7 +19,7 @@ exports.cloudsearchifyDocuments = function(khanDocument) {
   document.youtube_id = khanDocument.youtube_id;
 
   // create category array literal field by splitting subdomains of video url
-  document.category = khanDocument.extended_slug.split("/");
+  document.category = categories.split("/");
 
   // add type and id to very document to index, as required by Cloudsearch.
   // generate random unique hash for each id

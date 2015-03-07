@@ -4,14 +4,15 @@ var cloudsearchdomain = require(__dirname + "/../config/endpoints").cloudsearchd
 var request = require('request');
 var api = "http://www.khanacademy.org/api/v1/";
 var slug = "topic/core-finance";
-
 var count = 0;
-exports.indexDocuments = function(data) {
+var categories;
+
+exports.indexDocuments = function(data, categories) {
   var params = {
     contentType: 'application/json',
 
     // clean document data before indexing
-    documents: csd.cloudsearchifyDocuments(data)
+    documents: csd.cloudsearchifyDocuments(data, categories)
   };
 
   // send documents to be indexed into prosperence-cloudsearch domain
@@ -26,8 +27,9 @@ exports.indexDocuments = function(data) {
   });
 };
 
-var recurse = function(newSlug){
+var recurse = function(newSlug, extended_slug){
   slug = newSlug || slug;
+  categories = extended_slug || categories;
 
   var options = {
     "url": api + slug,
@@ -54,16 +56,16 @@ var recurse = function(newSlug){
 
             // call recurse method on child slugs
             if(child.kind === "Video"){
-              recurse("videos/" + child.id);
+              recurse("videos/" + child.id, extended_slug);
             } else {
-              recurse("topic/" + child.id);
+              recurse("topic/" + child.id, record.extended_slug);
             }
           });
         }
 
         // if response object has YouTube video attached to it, index each record individually
         if(record.youtube_id){
-          exports.indexDocuments(record);
+          exports.indexDocuments(record, categories);
         }
       }
     } else {
